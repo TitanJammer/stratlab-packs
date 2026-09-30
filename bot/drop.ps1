@@ -19,7 +19,7 @@ $APP_REPO = 'TitanJammer/Stratlab'
 $RELEASE = 'packs'
 $UA = "Stratlab-packs-bot (https://github.com/$repo)"
 $MAX_PACK = 25MB; $MAX_PIC = 8MB; $MAX_JSON = 4MB; $MAX_ENTRIES = 600; $MAX_STRATS = 200; $MAX_PACKS = 500
-$TYPES = @('post-plant', 'entry', 'smoke', 'one-way', 'flash', 'recon', 'setup', 'deny')
+$KNOWN_TYPES = @('post-plant', 'entry', 'smoke', 'one-way', 'flash', 'recon', 'setup', 'deny')   # not $TYPES: variable names are case-insensitive, $types below would clobber it
 $OK = [char]::ConvertFromUtf32(0x2705); $NO = [char]::ConvertFromUtf32(0x274C)   # the reactions: check mark, cross mark
 $OK_URL = '%E2%9C%85'; $NO_URL = '%E2%9D%8C'
 
@@ -69,7 +69,7 @@ function Test-Pack([byte[]]$bytes, $game) {
         $agent = Clip $s.agent 30; $map = Clip $s.map 30
         if (-not ($game.agents | Where-Object { $_.name -eq $agent })) { throw "unknown agent: '$agent'" }
         if (@($game.maps) -notcontains $map) { throw "unknown map: '$map'" }
-        $type = ([string]$s.type).ToLower(); if ($TYPES -notcontains $type) { $type = 'post-plant' }
+        $type = ([string]$s.type).ToLower(); if ($KNOWN_TYPES -notcontains $type) { $type = 'post-plant' }
         if (([string]$s.site).ToUpper() -notmatch '^[ABC]$') { throw "bad site: '$($s.site)'" }
         $steps = @($s.steps); if ($steps.Count -lt 1 -or $steps.Count -gt 5) { throw "a strat has $($steps.Count) steps (1 to 5 allowed)" }
         foreach ($stp in $steps) {
