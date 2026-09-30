@@ -1,7 +1,7 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-09-30T03:47:25Z",
+    "updated":  "2026-09-30T04:35:41Z",
     "packs":  [
                   {
                       "id":  "3cec2d9b-57b0-45b1-81ea-d34cede6d7fe",
@@ -31,7 +31,11 @@
                       "updated":  "2026-09-30T03:47:23Z",
                       "publisher":  "Titan Jammer",
                       "owner":  "9e6f6512cec83173",
-                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/3cec2d9b-57b0-45b1-81ea-d34cede6d7fe.stratlab"
+                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/3cec2d9b-57b0-45b1-81ea-d34cede6d7fe.stratlab",
+                      "votes":  0,
+                      "stratVotes":  {
+                                         "brimstone-abyss-a-postplant-2":  1
+                                     }
                   }
               ]
 }
