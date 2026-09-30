@@ -1,8 +1,37 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-09-30T02:53:05Z",
+    "updated":  "2026-09-30T03:47:25Z",
     "packs":  [
-
+                  {
+                      "id":  "3cec2d9b-57b0-45b1-81ea-d34cede6d7fe",
+                      "name":  "V26 BRIMSTONE POSTPLANT",
+                      "description":  "Lineups for the current ranked pool in Valorant V26.",
+                      "author":  "Titan Jammer",
+                      "strats":  22,
+                      "agents":  [
+                                     "Brimstone"
+                                 ],
+                      "maps":  [
+                                   "Abyss",
+                                   "Split",
+                                   "Sunset",
+                                   "Summit",
+                                   "Ascent",
+                                   "Lotus",
+                                   "Haven"
+                               ],
+                      "types":  [
+                                    "post-plant"
+                                ],
+                      "size":  10788854,
+                      "sha256":  "4fefe0d4df480e3c21a1b42058502d8ba89a413e25d44e84f03ec61cdb03f242",
+                      "stamp":  "2026-09-29T00:54:12",
+                      "published":  "2026-09-30T03:47:23Z",
+                      "updated":  "2026-09-30T03:47:23Z",
+                      "publisher":  "Titan Jammer",
+                      "owner":  "9e6f6512cec83173",
+                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/3cec2d9b-57b0-45b1-81ea-d34cede6d7fe.stratlab"
+                  }
               ]
 }
