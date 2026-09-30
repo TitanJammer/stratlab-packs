@@ -1,0 +1,374 @@
+﻿{
+    "maps":  [
+                 "Abyss",
+                 "Ascent",
+                 "Bind",
+                 "Breeze",
+                 "Corrode",
+                 "Fracture",
+                 "Haven",
+                 "Icebox",
+                 "Lotus",
+                 "Pearl",
+                 "Split",
+                 "Summit",
+                 "Sunset"
+             ],
+    "agents":  [
+                   {
+                       "name":  "Astra",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "Nova Pulse",
+                                         "Nebula  / Dissipate",
+                                         "Gravity Well",
+                                         "Astral Form / Cosmic Divide"
+                                     ]
+                   },
+                   {
+                       "name":  "Breach",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Flashpoint",
+                                         "Fault Line",
+                                         "Aftershock",
+                                         "Rolling Thunder"
+                                     ]
+                   },
+                   {
+                       "name":  "Brimstone",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "Stim Beacon",
+                                         "Incendiary",
+                                         "Sky Smoke",
+                                         "Orbital Strike"
+                                     ]
+                   },
+                   {
+                       "name":  "Chamber",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Rendezvous",
+                                         "Trademark",
+                                         "Headhunter",
+                                         "Tour De Force"
+                                     ]
+                   },
+                   {
+                       "name":  "Clove",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "Pick-me-up",
+                                         "Ruse",
+                                         "Not Dead Yet",
+                                         "Meddle"
+                                     ]
+                   },
+                   {
+                       "name":  "Cypher",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Cyber Cage",
+                                         "Spycam",
+                                         "Trapwire",
+                                         "Neural Theft"
+                                     ]
+                   },
+                   {
+                       "name":  "Deadlock",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Sonic Sensor",
+                                         "Barrier Mesh",
+                                         "GravNet",
+                                         "Annihilation"
+                                     ]
+                   },
+                   {
+                       "name":  "Fade",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Seize",
+                                         "Haunt",
+                                         "Prowler",
+                                         "Nightfall"
+                                     ]
+                   },
+                   {
+                       "name":  "Gekko",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Wingman",
+                                         "Dizzy",
+                                         "Mosh Pit",
+                                         "Thrash"
+                                     ]
+                   },
+                   {
+                       "name":  "Harbor",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "High Tide",
+                                         "Storm Surge",
+                                         "Cove",
+                                         "Reckoning"
+                                     ]
+                   },
+                   {
+                       "name":  "Iso",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Undercut",
+                                         "Kill Contract",
+                                         "Double Tap",
+                                         "Contingency"
+                                     ]
+                   },
+                   {
+                       "name":  "Jett",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Updraft",
+                                         "Tailwind",
+                                         "Cloudburst",
+                                         "Blade Storm"
+                                     ]
+                   },
+                   {
+                       "name":  "KAY/O",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "FRAG/ment",
+                                         "FLASH/drive",
+                                         "ZERO/point",
+                                         "NULL/cmd"
+                                     ]
+                   },
+                   {
+                       "name":  "Killjoy",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Nanoswarm",
+                                         "ALARMBOT",
+                                         "TURRET",
+                                         "Lockdown"
+                                     ]
+                   },
+                   {
+                       "name":  "Miks",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "M-pulse",
+                                         "Waveform",
+                                         "Harmonize",
+                                         "Bassquake"
+                                     ]
+                   },
+                   {
+                       "name":  "Neon",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "High Gear",
+                                         "Relay Bolt",
+                                         "Fast Lane",
+                                         "Overdrive"
+                                     ]
+                   },
+                   {
+                       "name":  "Omen",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "Paranoia",
+                                         "Dark Cover",
+                                         "Shrouded Step",
+                                         "From the Shadows"
+                                     ]
+                   },
+                   {
+                       "name":  "Phoenix",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Blaze",
+                                         "Hot Hands",
+                                         "Curveball",
+                                         "Run it Back"
+                                     ]
+                   },
+                   {
+                       "name":  "Raze",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Blast Pack",
+                                         "Paint Shells",
+                                         "Boom Bot",
+                                         "Showstopper"
+                                     ]
+                   },
+                   {
+                       "name":  "Reyna",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Devour",
+                                         "Dismiss",
+                                         "Leer",
+                                         "Empress"
+                                     ]
+                   },
+                   {
+                       "name":  "Sage",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Slow Orb",
+                                         "Healing Orb",
+                                         "Barrier Orb",
+                                         "Resurrection"
+                                     ]
+                   },
+                   {
+                       "name":  "Skye",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Trailblazer",
+                                         "Guiding Light",
+                                         "Regrowth",
+                                         "Seekers"
+                                     ]
+                   },
+                   {
+                       "name":  "Sova",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Shock Bolt",
+                                         "Recon Bolt",
+                                         "Owl Drone",
+                                         "Hunter\u0027s Fury"
+                                     ]
+                   },
+                   {
+                       "name":  "Tejo",
+                       "role":  "Initiator",
+                       "abilities":  [
+                                         "Guided Salvo",
+                                         "Special Delivery",
+                                         "Armageddon",
+                                         "Stealth Drone"
+                                     ]
+                   },
+                   {
+                       "name":  "Veto",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Interceptor",
+                                         "Crosscut",
+                                         "Evolution",
+                                         "Chokehold"
+                                     ]
+                   },
+                   {
+                       "name":  "Viper",
+                       "role":  "Controller",
+                       "abilities":  [
+                                         "Poison Cloud",
+                                         "Toxic Screen",
+                                         "Snake Bite",
+                                         "Viper\u0027s Pit"
+                                     ]
+                   },
+                   {
+                       "name":  "Vyse",
+                       "role":  "Sentinel",
+                       "abilities":  [
+                                         "Shear",
+                                         "Arc Rose",
+                                         "Razorvine",
+                                         "Steel Garden"
+                                     ]
+                   },
+                   {
+                       "name":  "Waylay",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "Refract",
+                                         "Saturate",
+                                         "Lightspeed",
+                                         "Convergent Paths"
+                                     ]
+                   },
+                   {
+                       "name":  "Yoru",
+                       "role":  "Duelist",
+                       "abilities":  [
+                                         "FAKEOUT",
+                                         "BLINDSIDE",
+                                         "GATECRASH",
+                                         "DIMENSIONAL DRIFT"
+                                     ]
+                   }
+               ],
+    "sites":  {
+                  "Abyss":  [
+                                "A",
+                                "B"
+                            ],
+                  "Ascent":  [
+                                 "A",
+                                 "B"
+                             ],
+                  "Bind":  [
+                               "A",
+                               "B"
+                           ],
+                  "Breeze":  [
+                                 "A",
+                                 "B"
+                             ],
+                  "Corrode":  [
+                                  "A",
+                                  "B"
+                              ],
+                  "Fracture":  [
+                                   "A",
+                                   "B"
+                               ],
+                  "Haven":  [
+                                "A",
+                                "B",
+                                "C"
+                            ],
+                  "Icebox":  [
+                                 "A",
+                                 "B"
+                             ],
+                  "Lotus":  [
+                                "A",
+                                "B",
+                                "C"
+                            ],
+                  "Pearl":  [
+                                "A",
+                                "B"
+                            ],
+                  "Split":  [
+                                "A",
+                                "B"
+                            ],
+                  "Summit":  [
+                                 "A",
+                                 "B"
+                             ],
+                  "Sunset":  [
+                                 "A",
+                                 "B"
+                             ]
+              },
+    "ranked":  [
+                   "Abyss",
+                   "Ascent",
+                   "Haven",
+                   "Lotus",
+                   "Split",
+                   "Summit",
+                   "Sunset"
+               ]
+}

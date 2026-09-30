@@ -1,0 +1,32 @@
+name: Discord pack drop
+# Every ten minutes: publish the .stratlab packs posted in the drop channel (see README).
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [publish]
+permissions:
+  contents: write
+concurrency:
+  group: drop
+  cancel-in-progress: false
+jobs:
+  drop:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Process the drop channel
+        shell: powershell
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNEL: ${{ secrets.DISCORD_CHANNEL }}
+          GH_TOKEN: ${{ github.token }}
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File bot\drop.ps1
+      - name: Commit the catalog
+        shell: bash
+        run: |
+          git config user.name "stratlab-bot"
+          git config user.email "stratlab-bot@users.noreply.github.com"
+          git add catalog.json bot/state.json
+          if git diff --cached --quiet; then echo "nothing changed"; else git commit -m "catalog: $(date -u +%Y-%m-%dT%H:%M:%SZ)" && git push; fi
