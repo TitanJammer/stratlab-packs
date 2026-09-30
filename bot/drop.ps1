@@ -49,7 +49,7 @@ function Test-Pack([byte[]]$bytes, $game) {
             $nm = $en.FullName -replace '\\', '/'
             if ($nm.EndsWith('/')) { continue }
             $cap = if ($nm -eq 'manifest.json' -or $nm -eq 'strats.json') { $MAX_JSON }
-                   elseif ($nm -match '^pics/[A-Za-z0-9_-]{1,40}\.(jpg|jpeg|png)$') { $MAX_PIC }
+                   elseif ($nm -match '^pics/[A-Za-z0-9_-]{1,40}\.(jpg|jpeg|png|gif)$') { $MAX_PIC }
                    else { throw "unexpected file in the pack: $nm" }
             $st = $en.Open(); $ms = New-Object IO.MemoryStream; $chunk = New-Object byte[] 65536
             try { while (($r = $st.Read($chunk, 0, $chunk.Length)) -gt 0) { $ms.Write($chunk, 0, $r); if ($ms.Length -gt $cap) { throw "a file in the pack is too big: $nm" } } } finally { $st.Dispose() }
@@ -70,7 +70,7 @@ function Test-Pack([byte[]]$bytes, $game) {
         if (-not ($game.agents | Where-Object { $_.name -eq $agent })) { throw "unknown agent: '$agent'" }
         if (@($game.maps) -notcontains $map) { throw "unknown map: '$map'" }
         $type = ([string]$s.type).ToLower(); if ($KNOWN_TYPES -notcontains $type) { $type = 'post-plant' }
-        if (([string]$s.site).ToUpper() -notmatch '^[ABC]$') { throw "bad site: '$($s.site)'" }
+        if (([string]$s.site).ToUpper() -notmatch '^([ABC]|MID)$') { throw "bad site: '$($s.site)'" }   # Mid: any type but post-plant
         $steps = @($s.steps); if ($steps.Count -lt 1 -or $steps.Count -gt 5) { throw "a strat has $($steps.Count) steps (1 to 5 allowed)" }
         foreach ($stp in $steps) {
             $srcs = @($stp.src | ForEach-Object { [string]$_ })
