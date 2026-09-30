@@ -21,6 +21,7 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNEL: ${{ secrets.DISCORD_CHANNEL }}
+          DISCORD_VOTES: ${{ secrets.DISCORD_VOTES }}
           GH_TOKEN: ${{ github.token }}
         run: powershell -NoProfile -ExecutionPolicy Bypass -File bot\drop.ps1
       - name: Commit the catalog
@@ -28,5 +29,5 @@ jobs:
         run: |
           git config user.name "stratlab-bot"
           git config user.email "stratlab-bot@users.noreply.github.com"
-          git add catalog.json bot/state.json
+          git add catalog.json bot/state.json bot/votes.json
           if git diff --cached --quiet; then echo "nothing changed"; else git commit -m "catalog: $(date -u +%Y-%m-%dT%H:%M:%SZ)" && git push; fi

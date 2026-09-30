@@ -195,6 +195,43 @@ function Poster-Of($m) {
     @{ name = (Clip $nm 40); owner = (Owner-Of ([string]$m.author.id)) }
 }
 
+# --- upvotes --------------------------------------------------------------------------------------------
+# The app posts one line per vote through a webhook into a private channel (DISCORD_VOTES):
+#   vote {"v":1,"id":"<install id>","k":"pack"|"strat","p":"<pack id>","s":"<strat source>","u":1|0}
+# Only messages that came through a webhook count. One vote per install per item; u:0 takes it back.
+# bot\votes.json keeps who voted for what; the catalog gets the counts (votes, stratVotes per pack).
+$votesPath = Join-Path $PSScriptRoot 'votes.json'
+function Read-VoteBook { $b = @{}; if (Test-Path $votesPath) { $j = Read-Json $votesPath; foreach ($p in $j.PSObject.Properties) { $ids = @{}; foreach ($q in $p.Value.PSObject.Properties) { $ids[$q.Name] = 1 }; $b[$p.Name] = $ids } }; $b }
+function Write-VoteBook($b) { $o = [ordered]@{}; foreach ($k in ($b.Keys | Sort-Object)) { $ids = [ordered]@{}; foreach ($id in ($b[$k].Keys | Sort-Object)) { $ids[$id] = 1 }; $o[$k] = $ids }; Write-Json $votesPath $o }
+function Apply-VoteLine($book, [string]$content) {
+    if ($content -notmatch '^vote\s+(\{.{0,400}\})\s*$') { return $false }
+    try { $v = $Matches[1] | ConvertFrom-Json } catch { return $false }
+    $id = [string]$v.id; $kind = [string]$v.k; $pack = ([string]$v.p) -replace '[^A-Za-z0-9-]', ''; $src = ([string]$v.s) -replace '[^a-z0-9-]', ''
+    if ($id -notmatch '^[0-9a-fA-F-]{36}$' -or -not $pack -or $pack.Length -gt 60) { return $false }
+    $key = if ($kind -eq 'pack') { "pack:$pack" } elseif ($kind -eq 'strat' -and $src -and $src.Length -le 80) { "strat:$pack/$src" } else { return $false }
+    if ("$($v.u)" -eq '1') { if (-not $book.ContainsKey($key)) { $book[$key] = @{} }; $book[$key][$id.ToLower()] = 1 }
+    else { if ($book.ContainsKey($key)) { $book[$key].Remove($id.ToLower()); if (-not $book[$key].Count) { $book.Remove($key) } } }
+    $true
+}
+function Tally-Votes($book, $cat) {   # write the counts into the catalog entries; true when any count changed
+    $changed = $false
+    foreach ($p in @($cat.packs)) {
+        $n = if ($book.ContainsKey("pack:$($p.id)")) { $book["pack:$($p.id)"].Count } else { 0 }
+        $sv = [ordered]@{}; $pre = "strat:$($p.id)/"
+        foreach ($k in ($book.Keys | Where-Object { $_.StartsWith($pre) } | Sort-Object)) { if ($book[$k].Count) { $sv[$k.Substring($pre.Length)] = $book[$k].Count } }
+        $oldN = if ($p.PSObject.Properties['votes']) { [int]$p.votes } else { 0 }
+        $oldSv = if ($p.PSObject.Properties['stratVotes'] -and $p.stratVotes) { ($p.stratVotes | ConvertTo-Json -Compress) } else { '{}' }
+        $newSv = if ($sv.Count) { ([pscustomobject]$sv | ConvertTo-Json -Compress) } else { '{}' }
+        if ($oldN -ne $n -or $oldSv -ne $newSv) {
+            $changed = $true
+            if ($p.PSObject.Properties['votes']) { $p.votes = $n } else { $p | Add-Member -NotePropertyName votes -NotePropertyValue $n }
+            $svObj = [pscustomobject]$sv
+            if ($p.PSObject.Properties['stratVotes']) { $p.stratVotes = $svObj } else { $p | Add-Member -NotePropertyName stratVotes -NotePropertyValue $svObj }
+        }
+    }
+    $changed
+}
+
 # --- the run -------------------------------------------------------------------------------------------
 $game = Get-Game
 $cat = Read-Catalog
@@ -247,6 +284,24 @@ foreach ($m in $msgs) {
         try { React $m $NO_URL; Reply $m "Could not publish this: $why" } catch { Write-Host "  (could not reply: $($_.Exception.Message))" }
     }
 }
+# the votes channel (or, in a local run, votes.txt: one vote line per row)
+$book = Read-VoteBook; $voteLast = ''; $nv = 0
+if ($Local) {
+    $vf = Join-Path $Local 'votes.txt'
+    if (Test-Path $vf) { foreach ($line in (Get-Content $vf)) { if (Apply-VoteLine $book $line) { $nv++ } } }
+} elseif ($env:DISCORD_VOTES) {
+    $vAfter = if ($state -and $state.lastVoteId) { [string]$state.lastVoteId } else { '0' }   # first time: the whole channel
+    foreach ($m in @(Get-NewMessages $env:DISCORD_VOTES $vAfter)) {
+        if ($m.webhook_id -and (Apply-VoteLine $book ([string]$m.content))) { $nv++ }   # only lines the app's webhook posted
+        if ($m.id -and (-not $voteLast -or [uint64]$m.id -gt [uint64]$voteLast)) { $voteLast = [string]$m.id }
+    }
+}
+if ($nv) { Write-VoteBook $book; Write-Host "$nv vote line(s) applied" }
+if (Tally-Votes $book $cat) { $changed = $true }
 if ($changed) { Write-Catalog $cat }
-if (-not $Local -and $last) { Write-Json $statePath ([ordered]@{ lastMessageId = $last }) }
+if (-not $Local -and ($last -or $voteLast)) {
+    $st = [ordered]@{ lastMessageId = $(if ($last) { $last } elseif ($state -and $state.lastMessageId) { [string]$state.lastMessageId } else { '' }) }
+    $st['lastVoteId'] = $(if ($voteLast) { $voteLast } elseif ($state -and $state.lastVoteId) { [string]$state.lastVoteId } else { '' })
+    Write-Json $statePath $st
+}
 Write-Host "done: $($cat.packs.Count) pack(s) in the catalog$(if ($changed) { ' (changed)' })"

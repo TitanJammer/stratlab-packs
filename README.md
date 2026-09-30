@@ -39,5 +39,21 @@ checked the same way the app checks an import (only known agents and maps, real 
 4. Run the **Discord pack drop** workflow once from the Actions tab to check the log. From then on it runs
    on its schedule. (GitHub pauses schedules after 60 days without commits; the bot's own commits count.)
 
+### Upvotes
+
+The app's upvote buttons (on marketplace packs, and on the details page of a strat that came from a pack)
+post one line each through a Discord **webhook** into a private channel, for example `#votes`:
+
+```
+vote {"v":1,"id":"<install id>","k":"pack","p":"<pack id>","u":1}
+```
+
+The bot reads that channel too (secret `DISCORD_VOTES` = its channel id), keeps who voted for what in
+`bot/votes.json` (one vote per install, `u:0` takes a vote back) and writes the counts into the catalog
+(`votes` per pack, `stratVotes` per strat). To set it up: create a private channel, add a webhook to it
+(channel settings → Integrations → Webhooks → New Webhook → Copy URL), put that URL in the app's
+`version.json` as `"votes"`, and store the channel id as the `DISCORD_VOTES` secret. Only lines that
+arrived through a webhook count, so people typing in the channel change nothing.
+
 `catalog.json` can also be edited by hand to remove or reorder packs. Publisher identities are stored only
 as the Discord username shown in the app and a hash of the user id used for the ownership check.
