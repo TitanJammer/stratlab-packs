@@ -1,8 +1,9 @@
 name: Discord pack drop
 # Every ten minutes: publish the .stratlab packs posted in the drop channel (see README).
 on:
+  # off the busy on-the-hour and every-ten-minute slots, which GitHub often skips or delays for new repos
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [publish]
