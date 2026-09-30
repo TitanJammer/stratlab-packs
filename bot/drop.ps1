@@ -93,22 +93,24 @@ function Test-Pack([byte[]]$bytes, $game) {
 }
 
 # --- GitHub: the pack files live as assets of one rolling release, so the repository stays small ---------
-function Gh([string[]]$a) {
+# gh.exe with the extension: a function called "Gh" would shadow the program (command names are
+# case-insensitive and functions win), which is how the first real upload recursed into itself
+function Invoke-Gh([string[]]$a) {
     $prev = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
-    try { $out = & gh @a 2>&1 | ForEach-Object { "$_" }; $code = $LASTEXITCODE } finally { $ErrorActionPreference = $prev }
+    try { $out = & gh.exe @a 2>&1 | ForEach-Object { "$_" }; $code = $LASTEXITCODE } finally { $ErrorActionPreference = $prev }
     @{ code = $code; out = ($out -join "`n") }
 }
 function Ensure-Release {
-    if ((Gh @('release', 'view', $RELEASE, '-R', $repo)).code -eq 0) { return }
-    $r = Gh @('release', 'create', $RELEASE, '-R', $repo, '--title', 'Pack files', '--notes', 'The .stratlab files listed in catalog.json. Install them from Packs > Browse in Stratlab.', '--latest=false')
+    if ((Invoke-Gh @('release', 'view', $RELEASE, '-R', $repo)).code -eq 0) { return }
+    $r = Invoke-Gh @('release', 'create', $RELEASE, '-R', $repo, '--title', 'Pack files', '--notes', 'The .stratlab files listed in catalog.json. Install them from Packs > Browse in Stratlab.', '--latest=false')
     if ($r.code -ne 0) { throw "could not create the packs release: $($r.out)" }
 }
 function Upload-Asset([string]$file) {
     Ensure-Release
-    $r = Gh @('release', 'upload', $RELEASE, $file, '-R', $repo, '--clobber')
+    $r = Invoke-Gh @('release', 'upload', $RELEASE, $file, '-R', $repo, '--clobber')
     if ($r.code -ne 0) { throw "upload failed: $($r.out)" }
 }
-function Delete-Asset([string]$name) { Gh @('release', 'delete-asset', $RELEASE, $name, '-R', $repo, '-y') | Out-Null }
+function Delete-Asset([string]$name) { Invoke-Gh @('release', 'delete-asset', $RELEASE, $name, '-R', $repo, '-y') | Out-Null }
 
 # --- the catalog -------------------------------------------------------------------------------------
 function Read-Catalog {
