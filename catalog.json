@@ -1,31 +1,8 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-09-30T02:52:02Z",
+    "updated":  "2026-09-30T02:53:05Z",
     "packs":  [
-                  {
-                      "id":  "3010ad5a-cf65-4419-a5ab-5f393288e7a2",
-                      "name":  "Haven denial",
-                      "description":  "One deny-space strat",
-                      "author":  "Tester",
-                      "strats":  1,
-                      "agents":  [
-                                     "Brimstone"
-                                 ],
-                      "maps":  [
-                                   "Haven"
-                               ],
-                      "types":  [
-                                    "deny"
-                                ],
-                      "size":  471362,
-                      "sha256":  "1d199f3b2899f64de84296d0aa29d1ae8179846f321732b7eb1767d793d45606",
-                      "stamp":  "2026-09-29T22:37:26",
-                      "published":  "2026-09-30T02:50:45Z",
-                      "updated":  "2026-09-30T02:52:02Z",
-                      "publisher":  "Local test",
-                      "owner":  "b3b2ef7b1ea8d46d",
-                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/3010ad5a-cf65-4419-a5ab-5f393288e7a2.stratlab"
-                  }
+
               ]
 }
