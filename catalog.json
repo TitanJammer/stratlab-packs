@@ -1,8 +1,36 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-10-01T00:49:13Z",
+    "updated":  "2026-10-01T23:24:42Z",
     "packs":  [
+                  {
+                      "id":  "5baf5bc8-55c0-4a54-9d46-2bdd78e95c35",
+                      "name":  "Viper Sunset Pack",
+                      "description":  "Attack and Defense Line Ups for Viper",
+                      "author":  "RocketChip",
+                      "strats":  21,
+                      "agents":  [
+                                     "Viper"
+                                 ],
+                      "maps":  [
+                                   "Sunset"
+                               ],
+                      "types":  [
+                                    "post-plant",
+                                    "smoke",
+                                    "one-way",
+                                    "deny",
+                                    "entry"
+                                ],
+                      "size":  13564604,
+                      "sha256":  "446ecf52520a434e0c8a2b07dd847669660c3b7c0370c57f224b8dd20326e6bc",
+                      "stamp":  "2026-10-01T19:22:01",
+                      "published":  "2026-10-01T23:24:40Z",
+                      "updated":  "2026-10-01T23:24:40Z",
+                      "publisher":  "RocketChip",
+                      "owner":  "ce54a77cc52116b7",
+                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/5baf5bc8-55c0-4a54-9d46-2bdd78e95c35.stratlab"
+                  },
                   {
                       "id":  "3cec2d9b-57b0-45b1-81ea-d34cede6d7fe",
                       "name":  "V26 BRIMSTONE POSTPLANT",
