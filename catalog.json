@@ -1,7 +1,7 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-10-01T23:24:42Z",
+    "updated":  "2026-10-02T08:59:34Z",
     "packs":  [
                   {
                       "id":  "5baf5bc8-55c0-4a54-9d46-2bdd78e95c35",
@@ -29,7 +29,11 @@
                       "updated":  "2026-10-01T23:24:40Z",
                       "publisher":  "RocketChip",
                       "owner":  "ce54a77cc52116b7",
-                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/5baf5bc8-55c0-4a54-9d46-2bdd78e95c35.stratlab"
+                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/5baf5bc8-55c0-4a54-9d46-2bdd78e95c35.stratlab",
+                      "votes":  1,
+                      "stratVotes":  {
+
+                                     }
                   },
                   {
                       "id":  "3cec2d9b-57b0-45b1-81ea-d34cede6d7fe",
