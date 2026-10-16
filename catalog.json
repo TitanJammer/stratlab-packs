@@ -1,8 +1,36 @@
 {
     "format":  "stratlab-catalog",
     "version":  1,
-    "updated":  "2026-10-02T08:59:34Z",
+    "updated":  "2026-10-16T18:29:23Z",
     "packs":  [
+                  {
+                      "id":  "211cfd31-08bb-4f8c-8c2f-397e982e369f",
+                      "name":  "Viper Sunset Pack",
+                      "description":  "Viper Line Ups for Sunset",
+                      "author":  "RocketChip",
+                      "strats":  23,
+                      "agents":  [
+                                     "Viper"
+                                 ],
+                      "maps":  [
+                                   "Sunset"
+                               ],
+                      "types":  [
+                                    "post-plant",
+                                    "smoke",
+                                    "one-way",
+                                    "deny",
+                                    "entry"
+                                ],
+                      "size":  14544160,
+                      "sha256":  "a03b5fec9b49cc8ce60d1e660f93824023ab25a189fb5bcba0c171eaf31b7d3a",
+                      "stamp":  "2026-10-16T13:37:04",
+                      "published":  "2026-10-16T18:29:21Z",
+                      "updated":  "2026-10-16T18:29:21Z",
+                      "publisher":  "RocketChip",
+                      "owner":  "ce54a77cc52116b7",
+                      "file":  "https://github.com/TitanJammer/stratlab-packs/releases/download/packs/211cfd31-08bb-4f8c-8c2f-397e982e369f.stratlab"
+                  },
                   {
                       "id":  "5baf5bc8-55c0-4a54-9d46-2bdd78e95c35",
                       "name":  "Viper Sunset Pack",
